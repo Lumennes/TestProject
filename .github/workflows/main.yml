@@ -96,13 +96,14 @@ jobs:
   
       - uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-         server: 141.8.193.236 #ftpupload.net
-         username: f0666053 #b7_31775484
-         password: puxeamduka #Rowdy956
+         server: ftpupload.net #141.8.193.236 #ftpupload.net
+         username: epiz_31880397 #f0666053 #b7_31775484
+         password: FHFMSjeTvyJJCk #puxeamduka #Rowdy956
          #local-dir: ./build/
          #server-dir: ./domains/f0666053.xsph.ru/public_html/build2/
          local-dir: build/ #${{ matrix.targetPlatform }}/
-         server-dir: /domains/f0666053.xsph.ru/public_html/${{ matrix.projectName }}/${{ matrix.targetPlatform }}/  #htdocs/Empty5/build/
+         server-dir: /htdocs/${{ matrix.projectName }}/${{ matrix.targetPlatform }}/
+         #server-dir: /domains/f0666053.xsph.ru/public_html/${{ matrix.projectName }}/${{ matrix.targetPlatform }}/  #htdocs/Empty5/build/
          state-name: ../.ftp-deploy-sync-state.json
          #protocol: ftps
          #port: 21 # todo replace with your web hosts ftps port

@@ -123,15 +123,7 @@ namespace StarterAssets
         if (_joysticks)
         {
 #if UNITY_EDITOR
-          isMobile = UnityEngine.Device.SystemInfo.deviceType != DeviceType.Desktop;
-          // снижаем магнитуду тач зоны в симуляторе чтоб не сильно вертелось
-          if (isMobile)
-          {
-            if (touchZone)
-            {
-              touchZone.magnitudeMultiplier = 1;
-            }
-          }
+          isMobile = UnityEngine.Device.SystemInfo.deviceType != DeviceType.Desktop; // мобайл если включен режим симулятора
 #else
 					isMobile = Application.platform == RuntimePlatform.Android; // в билде true если android
 
@@ -140,10 +132,18 @@ namespace StarterAssets
 						isMobile = Platform.IsMobileBrowser();
 					}
 #endif
+          // снижаем магнитуду тач зоны в симуляторе чтоб не сильно вертелось кроме андройда
+          if (Application.platform != RuntimePlatform.Android && isMobile && touchZone)
+          {
+            touchZone.magnitudeMultiplier = 2;
+          }
+
           _joysticks.SetActive(isMobile);
         }
+
         _input.cursorLocked = !isMobile;
         _input.cursorInputForLook = !isMobile;
+
         Cursor.visible = isMobile;
         Cursor.lockState = isMobile ? CursorLockMode.None : CursorLockMode.Locked;
       }
